@@ -5,8 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 
@@ -24,7 +22,7 @@ function PaperSheet(props) {
 
   console.log("data: ", props)
 
-  if (props.data == undefined || props.data == null || props.data.message ){
+  if (props.data === undefined || props.data === null || props.data.message ){
     return <div></div>
   }else{
 
@@ -35,7 +33,6 @@ function PaperSheet(props) {
               <Grid item xs={4} >
 
                 <Card className={classes.card}>
-                  <CardActionArea>
                     <CardMedia
                       component="img"
                       alt={props.data.name}
@@ -56,7 +53,6 @@ function PaperSheet(props) {
                         {props.data.bio}
                       </Typography>
                     </CardContent>
-                  </CardActionArea>
                 </Card>
 
               </Grid>

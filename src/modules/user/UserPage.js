@@ -10,7 +10,7 @@ class UserPage extends React.Component{
     super(props);
     this.state = {
       data: null,
-      loading: false,
+      isLoading: false,
       searchText: ''
     }
   }
@@ -19,6 +19,22 @@ class UserPage extends React.Component{
   extractData = data => {
 
     this.setState({data: data});
+    this.toggleLoading();
+
+  }
+
+
+  updateSearch = (inputvalue) => {
+    
+    this.setState(() =>({
+      searchText: inputvalue,
+    }));
+
+  }
+
+  toggleLoading = () => {
+
+    this.setState({isLoading: !this.state.isLoading})
 
   }
 
@@ -27,7 +43,9 @@ class UserPage extends React.Component{
 
       return(
         <div>
-            <UserProfile data={this.state.data}
+            <UserProfile data={this.state.data} isLoading={this.state.isLoading} text={this.searchText}
+                          extractData={this.extractData} updateSearch={this.updateSearch}
+                          toggleLoading = {this.toggleLoading}
             />    
         </div>
       )
