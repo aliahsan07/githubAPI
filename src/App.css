@@ -32,7 +32,19 @@
 }
 
 
-.oc-search-bar {
-  margin-left: 30em;
-  margin-top: 0.5em;
+.searchbar {
+  /* margin-left: em; */
+  /* margin-top: 0.5em; */
+  overflow: hidden;
+  background-color: #e9e9e9;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  font-size: 17px;
+
+}
+
+.searchbar [type="text"]{
+  height: 20px;
+  width: 35em;
 }
