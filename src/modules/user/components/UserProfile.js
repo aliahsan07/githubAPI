@@ -11,7 +11,6 @@ class UserProfile extends React.Component{
 
   onHandleChange = event => {
     const inputvalue = event.target.value;
-    //this.props.updateSearch(inputvalue);
     this.props.fetchUser(inputvalue);
 
   }

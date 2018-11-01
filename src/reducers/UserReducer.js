@@ -8,7 +8,6 @@ const UserReducer = (state = {
   switch (action.type){
 
     case ActionTypes.DATA_LOADING:
-      console.log("HERE");
       return {...state, isLoading: true, errMess: null, data: null}
 
     case ActionTypes.DATA_LOADED:
@@ -16,6 +15,9 @@ const UserReducer = (state = {
 
     case ActionTypes.DATA_FAILED:
       return {...state, isLoading: false, errMess: action.payload}
+
+    case ActionTypes.DATA_CLEARED:
+      return {...state, isLoading:false, errMess: null, data: null}
 
     default:
       return state;

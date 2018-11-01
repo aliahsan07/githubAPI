@@ -70,7 +70,8 @@ function PaperSheet(props) {
                     User Data collected through GitHub API 
                     <hr/>
                   </Typography>
-                  <Typography component="p">
+                  <Typography component="div">
+                  
                     <strong>Account created at: </strong> {new Date(props.data.created_at).toString()}
                     <hr/>
                     <strong>Location: </strong> {props.data.location}

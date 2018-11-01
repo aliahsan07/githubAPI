@@ -18,8 +18,16 @@ export const dataLoaded = (data) => ({
   payload: data
 })
 
+export const dataClear = () => ({
+  type: ActionTypes.DATA_CLEARED
+})
+
 
 export const fetchData = inputData => (dispatch) => {
+
+  if (inputData.length === 0){
+    return dispatch(dataClear());
+  }
 
   dispatch(dataLoading());
   const url = `https://api.github.com/users/${inputData}`;
