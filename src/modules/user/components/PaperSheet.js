@@ -20,11 +20,18 @@ const styles = theme => ({
 function PaperSheet(props) {
   const { classes } = props;
 
-  console.log("data: ", props)
+  console.log(props.err);
 
-  if (props.data === undefined || props.data === null || props.data.message ){
+
+  if (props.data === null && props.err=== null){
     return <div></div>
-  }else{
+  }
+  else if (props.err){
+    console.log("I am here");
+    return <h4>No User data found against searched Value</h4>
+  }
+  
+  else{
 
       return (
         <div>

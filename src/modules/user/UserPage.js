@@ -1,26 +1,31 @@
 import React from 'react';
 import UserProfile from './components/UserProfile';
-import Loading from './components/Loading';
+import { connect } from 'react-redux';
+import { fetchData } from '../../actions/ActionCreators';
+
+const mapStateToProps = state => {
+
+  return {
+    data: state.user.data,
+    isLoading: state.user.isLoading,
+    errMess: state.user.errMess
+  }
+
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  
+  fetchUser : (inputData) => dispatch(fetchData(inputData))
+
+});
 
 class UserPage extends React.Component{
-
-
-  constructor(props){
-
-    super(props);
-    this.state = {
-      data: null,
-      isLoading: false,
-      searchText: ''
-    }
-  }
 
 
   extractData = data => {
 
     this.setState({data: data});
     this.toggleLoading();
-
   }
 
 
@@ -43,9 +48,10 @@ class UserPage extends React.Component{
 
       return(
         <div>
-            <UserProfile data={this.state.data} isLoading={this.state.isLoading} text={this.searchText}
+            <UserProfile data={this.props.data} isLoading={this.props.isLoading} 
+                          err={this.props.errMess} text={this.searchText}
                           extractData={this.extractData} updateSearch={this.updateSearch}
-                          toggleLoading = {this.toggleLoading}
+                          toggleLoading = {this.toggleLoading} fetchUser={this.props.fetchUser}
             />    
         </div>
       )
@@ -57,4 +63,4 @@ class UserPage extends React.Component{
 }
 
 
-export default UserPage;
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
