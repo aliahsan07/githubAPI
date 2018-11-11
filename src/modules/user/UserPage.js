@@ -1,7 +1,36 @@
 import React from 'react';
-import UserProfile from './components/UserProfile';
 import { connect } from 'react-redux';
 import { fetchData } from '../../actions/ActionCreators';
+import NavBar from './components/NavBar';
+import Grid from '@material-ui/core/Grid';
+import Loading from './components/Loading';
+import PaperSheet from './components/PaperSheet';
+class UserPage extends React.Component {
+
+
+  onHandleChange = event => {
+    const inputvalue = event.target.value;
+    this.props.fetchUser(inputvalue);
+  }
+
+  render() {
+    return (
+      <div>
+        <NavBar/>
+        <div className="searchbar">
+          <input type="text" placeholder="Search.." value={this.props.text}
+                                   onChange={this.onHandleChange} />
+        </div>
+        <Grid container direction="row" justify="center" >
+          <Grid item xs={8}>
+            {this.props.isLoading? <Loading/> : <PaperSheet data={this.props.data} err={this.props.errMess} />}
+      
+          </Grid>
+        </Grid>
+      </div>
+    )
+  }
+}
 
 const mapStateToProps = state => {
 
@@ -14,25 +43,10 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  
-  fetchUser : (inputData) => dispatch(fetchData(inputData))
+
+  fetchUser: (inputData) => dispatch(fetchData(inputData))
 
 });
-
-class UserPage extends React.Component{
-
-
-
-  render(){
-      return(
-        <div>
-            <UserProfile data={this.props.data} isLoading={this.props.isLoading} 
-                          err={this.props.errMess}
-                         fetchUser={this.props.fetchUser} />    
-        </div>
-      )
-  }
-}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
